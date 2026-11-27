@@ -1,5 +1,0 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Payment result | Uwakitech</title><link rel="stylesheet" href="/styles.css"></head>
-<body><main class="section" style="max-width:720px;margin:auto;min-height:70vh"><p class="eyebrow">UWAKITECH CHECKOUT</p><h1>Checking your payment…</h1><p id="result">Please wait while we verify your transaction with Paystack.</p><a class="button button-dark" href="/">Back to website</a></main><script>
-(async()=>{const ref=new URLSearchParams(location.search).get("reference");const out=document.getElementById("result");if(!ref){out.textContent="No payment reference was provided.";return;}try{const r=await fetch("/api/paystack/verify/"+encodeURIComponent(ref));const d=await r.json();out.textContent=d.paid?`Payment successful. Reference: ${d.reference}. Amount: ${d.currency} ${d.amount.toLocaleString()}.`:`Payment status: ${d.status||d.message||"Not confirmed"}. Reference: ${ref}.`;}catch(e){out.textContent="We could not verify this payment right now. Please contact Uwakitech with your payment reference: "+ref;}})();
-</script></body></html>
